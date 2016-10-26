@@ -1,16 +1,19 @@
 package ru.itis.inform.models;
 
 public class Auto {
+  private int auto_id;
   private String brand;
   private String type;
-  private int mileage;
-  private int horsepower;
+  private String mileage;
+  private String horsepower;
   private String gearbox;
-  private int year;
+  private String year;
   private String color;
   private String wheel;
+  private String price;
 
-  public Auto(String brand, String type, int mileage, int horsepower, String gearbox, int year, String color, String wheel) {
+  public Auto(String brand, String type, String mileage, String horsepower, String gearbox, String year, String color, String wheel) {
+    this.auto_id = brand.hashCode();
     this.brand = brand;
     this.type = type;
     this.mileage = mileage;
@@ -21,6 +24,21 @@ public class Auto {
     this.wheel = wheel;
   }
 
+  public Auto(String brand, String type, String mileage, String horsepower, String gearbox, String year, String color, String wheel, String price) {
+    this.auto_id = brand.hashCode();
+    this.brand = brand;
+    this.type = type;
+    this.mileage = mileage;
+    this.horsepower = horsepower;
+    this.gearbox = gearbox;
+    this.year = year;
+    this.color = color;
+    this.wheel = wheel;
+    this.price = price;
+  }
+
+  public int getId() { return auto_id; }
+
   public String getBrand() {
     return brand;
   }
@@ -29,11 +47,11 @@ public class Auto {
     return type;
   }
 
-  public int getMileage() {
+  public String getMileage() {
     return mileage;
   }
 
-  public int getHorsepower() {
+  public String getHorsepower() {
     return horsepower;
   }
 
@@ -41,7 +59,7 @@ public class Auto {
     return gearbox;
   }
 
-  public int getYear() {
+  public String getYear() {
     return year;
   }
 
@@ -52,4 +70,6 @@ public class Auto {
   public String getWheel() {
     return wheel;
   }
+
+  public String getPrice() { return price; }
 }

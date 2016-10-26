@@ -1,0 +1,83 @@
+body {
+  font-family: 'Avenir Next', sans-serif;
+}
+.navbar-default {
+  background: rgba(255, 255, 255, .95);
+}
+.banner {
+  width: 100vw;
+  padding: 0;
+  background: url(../img/banner-01.jpg) no-repeat;
+  background-size: 100%;
+}
+.col-lg-12, .col-md-12, .col-sm-12 {
+  padding: 0;
+}
+.jumbotron {
+  background: rgba(255, 255, 255, 0);
+}
+.slogan {
+  margin: 200px auto;
+  text-align: center;
+}
+.slogan h1 {
+  font-weight: 300;
+  color: #fff;
+}
+.banner-buttons {
+  margin-top: 88px;
+}
+.btn-default {
+  margin: 0 15px;
+  width: 200px;
+  padding: 12px 20px;
+  border-radius: 25px;
+  color: #fff;
+  font-weight: 300;
+  font-size: 1.2em;
+  transition: all .2s ease-in-out;
+  border: none;
+
+}
+.btn-join {
+  background: #E55934;
+}
+.btn-goto {
+  background: #9BC53D;
+}
+.btn-join:hover {
+  background: #C64E2D;
+  color: white;
+}
+.btn-goto:hover {
+  background: #83A834;
+  color: white;
+}
+.center-banner {
+  margin: 150px auto;
+  text-align: center;
+  height: 90px;
+  color: white;
+}
+.center-banner a {
+  margin-top: 25px;
+}
+h2 {
+  font-weight: 300;
+}
+.login {
+  background: url(../img/mini-banner01.jpg) no-repeat;
+}
+.register {
+  background: url(../img/mini-banner02.jpg) no-repeat;
+}
+.mini-banner {
+  background-size: 100%;
+  cursor: pointer;
+}
+.join-form {
+  margin: 100px 0;
+}
+.results {
+  margin-top: 75px;
+}

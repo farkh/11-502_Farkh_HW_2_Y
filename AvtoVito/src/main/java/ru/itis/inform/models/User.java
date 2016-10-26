@@ -1,30 +1,36 @@
 package ru.itis.inform.models;
 
 public class User {
+  private int id;
   private String login;
-  private String name;
-  private String surname;
+  private String password;
+  private String fio;
   private String address;
   private String phone;
 
-  public User(String login, String name, String surname, String address, String phone) {
+  public User(String login, String password, String fio, String address, String phone) {
+    this.id = login.hashCode();
     this.login = login;
-    this.name = name;
-    this.surname = surname;
+    this.password = password;
+    this.fio = fio;
     this.address = address;
     this.phone = phone;
   }
+
+  public User(String login) {
+    this.login = login;
+  }
+
+  public int getId() { return id; }
 
   public String getLogin() {
     return login;
   }
 
-  public String getName() {
-    return name;
-  }
+  public String getPassword() { return password; }
 
-  public String getSurname() {
-    return surname;
+  public String getFIO() {
+    return fio;
   }
 
   public String getAddress() {
