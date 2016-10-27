@@ -2,8 +2,10 @@ package ru.itis.inform.dao;
 
 import ru.itis.inform.factories.ConnectionFactory;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 public class TokenDAOImpl implements TokenDAO {
 
@@ -46,9 +48,10 @@ public class TokenDAOImpl implements TokenDAO {
 
         query = "DELETE FROM Cookies WHERE token = ?";
 
-        ConnectionFactory.statement = ConnectionFactory.getInstance().getConnection().prepareStatement(query);
-        ConnectionFactory.statement.setString(1, token);
-        ConnectionFactory.statement.executeUpdate();
+        PreparedStatement statement = ConnectionFactory.getInstance().getConnection().prepareStatement(query);
+
+        statement.setString(1, token);
+        statement.executeUpdate();
       }
     } catch (SQLException e) {
       e.printStackTrace();

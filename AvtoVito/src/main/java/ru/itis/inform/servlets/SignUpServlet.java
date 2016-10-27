@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.sql.SQLException;
 
 public class SignUpServlet extends HttpServlet {
 
@@ -21,7 +22,7 @@ public class SignUpServlet extends HttpServlet {
 
     HttpSession session = req.getSession();
 
-    String user = (String) session.getAttribute("current_user");
+    Object user = session.getAttribute("current_user");
 
     if (user != null) {
       resp.sendRedirect("/auto");
@@ -51,28 +52,37 @@ public class SignUpServlet extends HttpServlet {
             req.getParameter("phone-register-field")
     );
 
-    auto = new Auto(
-            req.getParameter("brand-register-field"),
-            req.getParameter("type-register-field"),
-            req.getParameter("mileage-register-field"),
-            req.getParameter("horsepower-register-field"),
-            req.getParameter("gearbox-register-field"),
-            req.getParameter("year-register-field"),
-            req.getParameter("color-register-field"),
-            req.getParameter("wheel-register-field"),
-            req.getParameter("price-register-field")
-            );
+//    auto = new Auto(
+//            req.getParameter("brand-register-field"),
+//            req.getParameter("type-register-field"),
+//            req.getParameter("mileage-register-field"),
+//            req.getParameter("horsepower-register-field"),
+//            req.getParameter("gearbox-register-field"),
+//            req.getParameter("year-register-field"),
+//            req.getParameter("color-register-field"),
+//            req.getParameter("wheel-register-field"),
+//            req.getParameter("price-register-field")
+//            );
 
     if (user.getLogin() != null & user.getPassword() != null) {
       //Add info about user to db \\ userService.findUser(user.getLogin()) != null
-      if (false) {
-        resp.sendRedirect("/exists");
-      } else {
+//      if (userService.findUser(user.getLogin()) != null) {
+//        resp.sendRedirect("/exists");
+//      } else {
+//        try {
+//          userDAO.save(user);
+//        } catch (SQLException e) {
+//          e.printStackTrace();
+//        }
+//      }
+      try {
         userDAO.save(user);
+      } catch (SQLException e) {
+        e.printStackTrace();
       }
 
       //Add user's requirements to db
-      autoDAO.saveRequirements("" + user.getId(), auto);
+//      autoDAO.saveRequirements("" + user.getId(), auto);
 
       resp.sendRedirect("/login");
     } else {

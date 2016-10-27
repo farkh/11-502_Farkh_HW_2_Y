@@ -9,12 +9,12 @@ public class User {
   private String phone;
 
   public User(String login, String password, String fio, String address, String phone) {
-    this.id = login.hashCode();
     this.login = login;
     this.password = password;
     this.fio = fio;
     this.address = address;
     this.phone = phone;
+    this.id = login.hashCode();
   }
 
   public User(String login) {

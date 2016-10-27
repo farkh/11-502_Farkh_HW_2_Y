@@ -11,32 +11,48 @@ public class UserDAOImpl implements UserDAO {
   private String query;
   private UserService userService;
 
-  public User find(String login) {
-
-    try {
-
-      query = "SELECT * FROM Customers WHERE login = ?;";
-
-      Statement statement = ConnectionFactory.getInstance().getConnection().prepareStatement(query);
-      ConnectionFactory.statement.setString(1, login);
-
-      ResultSet resultSet = ConnectionFactory.statement.executeQuery();
-
-      while (resultSet.next()) {
-        return new User(resultSet.getString("login"), resultSet.getString("password"), resultSet.getString("fio"), resultSet.getString("address"), resultSet.getString("phone"));
-      }
-    } catch (Exception e) {
-      System.out.println("Error.");
-    }
-
-    return null;
+  public UserDAOImpl() {
+    this.query = "";
   }
 
-  public void save(User user) {
+  public User find(String login) {
+    Statement statement;
+    User resUser = null;
+    try {
+
+      String checkLogin;
+      query = "SELECT * FROM customers;";
+
+      ConnectionFactory connectionFactory = ConnectionFactory.getInstance();
+      statement = connectionFactory.getConnection().createStatement();
+
+      ResultSet resultSet = statement.executeQuery(query);
+
+      while (resultSet.next()) {
+        checkLogin = resultSet.getString("login");
+        if (login.equals(checkLogin)) {
+          resUser = new User(resultSet.getString("login"), resultSet.getString("password"), resultSet.getString("fio"), resultSet.getString("address"), resultSet.getString("phone"));
+          break;
+        }
+      }
+    } catch (Exception e) {
+      System.out.println("Error, find() doesn't work :(");
+    }
+
+    return resUser;
+  }
+
+  public void save(User user) throws SQLException {
 
     query = "INSERT INTO customers (id, login, password, fio, address, phone) VALUES ( ? , ? , ? , ? , ? , ?);";
 
-    try {
+//    query = "INSERT INTO customers (id, login, password, fio, address, phone) " +
+//            "VALUES ('" + user.getId() + "', '" + user.getLogin() +
+//            "', '" + user.getPassword() + "', '" + user.getFIO() +
+//            "', '" + user.getAddress() + "', '" + user.getPhone() + "');";
+
+//    Statement statement = ConnectionFactory.getInstance().getConnection().createStatement();
+//    statement.executeUpdate(query);
 
       PreparedStatement statement = ConnectionFactory.getInstance().getConnection().prepareStatement(query);
 
@@ -48,10 +64,6 @@ public class UserDAOImpl implements UserDAO {
       statement.setString(6, user.getPhone());
 
       statement.executeUpdate();
-    } catch (SQLException e) {
-      e.printStackTrace();
-    }
-
   }
 
   public List<User> findAll() {

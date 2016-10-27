@@ -21,7 +21,7 @@ public class SignInServlet extends HttpServlet {
 
     HttpSession session = req.getSession();
 
-    String user = (String) session.getAttribute("current_user");
+    Object user = session.getAttribute("current_user");
 
     if (user != null) {
       resp.sendRedirect("/auto");

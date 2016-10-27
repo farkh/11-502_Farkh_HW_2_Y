@@ -1,9 +1,11 @@
 package ru.itis.inform.services;
 
 import ru.itis.inform.dao.UserDAO;
+import ru.itis.inform.dao.UserDAOImpl;
 import ru.itis.inform.factories.ConnectionFactory;
 import ru.itis.inform.models.User;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -20,8 +22,12 @@ public class UserServiceImpl implements UserService {
     try {
 
       query = "SELECT login FROM Customers;";
-      statement = ConnectionFactory.getInstance().getConnection().prepareStatement(query);
-      ResultSet resultSet = ConnectionFactory.statement.executeQuery();
+//      statement = ConnectionFactory.getInstance().getConnection().prepareStatement(query);
+//      ResultSet resultSet = statement.executeQuery();
+
+      statement = ConnectionFactory.getInstance().getConnection().createStatement();
+
+      ResultSet resultSet = statement.executeQuery(query);
 
       while(resultSet.next()) {
         if (login.equals(resultSet.getString("login"))) {
@@ -43,9 +49,13 @@ public class UserServiceImpl implements UserService {
     try {
       String query = "SELECT login, password FROM Customers;";
 
-      Statement statement = ConnectionFactory.getInstance().getConnection().prepareStatement(query);
+      PreparedStatement statement = ConnectionFactory.getInstance().getConnection().prepareStatement(query);
 
-      ResultSet resultSet = ConnectionFactory.statement.executeQuery();
+      ResultSet resultSet = statement.executeQuery();
+
+//      Statement statement = ConnectionFactory.getInstance().getConnection().createStatement();
+//
+//      ResultSet resultSet = statement.executeQuery(query);
 
       while(resultSet.next()) {
         if (isRegistered(login) & password.equals(resultSet.getString("password"))) {
@@ -65,13 +75,13 @@ public class UserServiceImpl implements UserService {
   }
 
   public User findUser(String login) {
+    User user = null;
+    userDAO = new UserDAOImpl();
 
-    return userDAO.find(login);
-//
-//    if (userDAO.find(login) != null) {
-//      return userDAO.find(login);
-//    } else {
-//      return null;
-//    }
+    if (userDAO.find(login) != null) {
+      user =  userDAO.find(login);
+    }
+
+    return user;
   }
 }

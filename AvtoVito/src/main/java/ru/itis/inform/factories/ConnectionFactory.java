@@ -19,7 +19,7 @@ public class ConnectionFactory {
   private ConnectionFactory() {
 
     try {
-      properties = new Properties();
+      this.properties = new Properties();
       properties.load(new FileInputStream("/Users/farkh/Programming/11-502_Farkh_HW_2_Y/AvtoVito/src/main/resources/drivers.properties"));
 
       this.driverClass = properties.getProperty("driver.class");
@@ -30,19 +30,20 @@ public class ConnectionFactory {
       System.out.println("Connection: true");
 
       Class.forName(driverClass);
-      this.connection = DriverManager.getConnection(urlDB, userDB, passwordDB);
+      connection = DriverManager.getConnection(urlDB, userDB, passwordDB);
 
     } catch (Exception e) {
-      System.out.println("Error.");
-    } finally {
-      if (connection != null) {
-        try {
-          connection.close();
-        } catch (SQLException e) {
-          System.out.println("SQL error.");
-        }
-      }
+      System.out.println("Error, couldn't install Connection :(((((");
     }
+//    finally {
+//      if (connection != null) {
+//        try {
+//          connection.close();
+//        } catch (SQLException e) {
+//          System.out.println("SQL error.");
+//        }
+//      }
+//    }
   }
 
   static {
@@ -54,6 +55,7 @@ public class ConnectionFactory {
   }
 
   public Connection getConnection() throws SQLException {
+    System.out.println("Connection return");
     return connection;
   }
 
