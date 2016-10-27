@@ -2,14 +2,12 @@ package ru.itis.inform.dao;
 
 import ru.itis.inform.factories.ConnectionFactory;
 import ru.itis.inform.models.User;
-import ru.itis.inform.services.UserService;
 
 import java.sql.*;
 import java.util.List;
 
 public class UserDAOImpl implements UserDAO {
   private String query;
-  private UserService userService;
 
   public UserDAOImpl() {
     this.query = "";
@@ -46,24 +44,16 @@ public class UserDAOImpl implements UserDAO {
 
     query = "INSERT INTO customers (id, login, password, fio, address, phone) VALUES ( ? , ? , ? , ? , ? , ?);";
 
-//    query = "INSERT INTO customers (id, login, password, fio, address, phone) " +
-//            "VALUES ('" + user.getId() + "', '" + user.getLogin() +
-//            "', '" + user.getPassword() + "', '" + user.getFIO() +
-//            "', '" + user.getAddress() + "', '" + user.getPhone() + "');";
+    PreparedStatement statement = ConnectionFactory.getInstance().getConnection().prepareStatement(query);
 
-//    Statement statement = ConnectionFactory.getInstance().getConnection().createStatement();
-//    statement.executeUpdate(query);
+    statement.setInt(1, user.getId());
+    statement.setString(2, user.getLogin());
+    statement.setString(3, user.getPassword());
+    statement.setString(4, user.getFIO());
+    statement.setString(5, user.getAddress());
+    statement.setString(6, user.getPhone());
 
-      PreparedStatement statement = ConnectionFactory.getInstance().getConnection().prepareStatement(query);
-
-      statement.setInt(1, user.getId());
-      statement.setString(2, user.getLogin());
-      statement.setString(3, user.getPassword());
-      statement.setString(4, user.getFIO());
-      statement.setString(5, user.getAddress());
-      statement.setString(6, user.getPhone());
-
-      statement.executeUpdate();
+    statement.executeUpdate();
   }
 
   public List<User> findAll() {

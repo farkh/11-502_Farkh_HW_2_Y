@@ -17,7 +17,7 @@ public class AutoDAOImpl implements AutoDAO {
 
   public void save(Auto auto) {
     query = "INSERT INTO Auto (auto_id, brand, type, price, color, wheel, mileage, horsepower, gearbox, year) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
-//
+
     try {
 
       PreparedStatement statement = ConnectionFactory.getInstance().getConnection().prepareStatement(query);

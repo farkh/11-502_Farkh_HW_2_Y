@@ -1,10 +1,8 @@
 package ru.itis.inform.servlets;
 
-import ru.itis.inform.dao.UserDAOImpl;
 import ru.itis.inform.models.User;
 import ru.itis.inform.services.TokenService;
 import ru.itis.inform.services.TokenServiceImpl;
-import ru.itis.inform.services.UserService;
 import ru.itis.inform.services.UserServiceImpl;
 import ru.itis.inform.utils.Token;
 
@@ -20,7 +18,6 @@ public class SignInServlet extends HttpServlet {
   protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
     HttpSession session = req.getSession();
-
     Object user = session.getAttribute("current_user");
 
     if (user != null) {
@@ -38,7 +35,7 @@ public class SignInServlet extends HttpServlet {
 
     String login = req.getParameter("login-signin-field");
     String password = req.getParameter("password-signin-field");
-//    String cookieCheck = req.getParameter("cookie");
+    String cookieCheck = req.getParameter("checkbox-cookies");
     UserServiceImpl userService = new UserServiceImpl();
 
     User currentUser = userService.findUser(login);
@@ -49,9 +46,8 @@ public class SignInServlet extends HttpServlet {
 
         // S E S S I O N
         session.setAttribute("current_user", currentUser);
-        //cookieCheck != null && cookieCheck.equals("true")
-        if (true) {
 
+        if (cookieCheck != null) {
           String token = Token.getToken();
           Cookie cookie = new Cookie("current_user", token);
           cookie.setMaxAge(7 * 24 * 60 * 60);
@@ -63,6 +59,8 @@ public class SignInServlet extends HttpServlet {
       } else {
         resp.sendRedirect("/notfound");
       }
+    } else {
+      resp.sendRedirect("/notfound");
     }
 
   }

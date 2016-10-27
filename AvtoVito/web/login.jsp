@@ -69,7 +69,7 @@
       </div>
       <div class="checkbox">
         <label>
-          <input type="checkbox"> Запомнить
+          <input type="checkbox" name="checkbox-cookies"> Запомнить
         </label>
       </div>
       <br>

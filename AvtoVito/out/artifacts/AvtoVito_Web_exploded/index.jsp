@@ -47,7 +47,7 @@
                 <ul class="nav navbar-nav">
                     <li class="active"><a href="#Top">Главная<span class="sr-only"></span></a></li>
                     <li><a href="/register">Присоединиться</a></li>
-                    <li><a href="/auto">Автомобили</a></li>
+                    <!-- <li><a href="/auto">Автомобили</a></li> -->
                 </ul>
             </div>
         </div>

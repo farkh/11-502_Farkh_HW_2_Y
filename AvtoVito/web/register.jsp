@@ -59,7 +59,7 @@
     <h2>Регистрация</h2>
     <hr>
     <form role="form" method="POST">
-      <h4>Данные пользователя</h4>
+      <!-- <h4>Данные пользователя</h4> -->
       <br>
       <div class="form-group">
         <label for="username-join-field">Имя пользователя</label>
@@ -82,7 +82,7 @@
         <input name="phone-register-field" type="text" class="form-control" id="phone-join-field" placeholder="+7 (XXX) XXX-XX-XX">
       </div>
       <hr>
-      <h4>Характеристики авто</h4>
+      <!-- <h4>Характеристики авто</h4>
       <br>
       <div class="form-group">
         <label for="brand-join-select">Какие бренды предпочитаете?</label>
@@ -166,7 +166,7 @@
       <div class="form-group">
         <label for="price-join-field">Цена</label>
         <input name="price-register-field" type="text" class="form-control" id="price-join-field" placeholder="Цена в руб.">
-      </div>
+      </div> -->
 
       <br>
       <button type="submit" class="btn btn-primary btn-block">Регистрация</button>

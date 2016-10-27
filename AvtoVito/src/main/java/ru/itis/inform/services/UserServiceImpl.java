@@ -22,11 +22,7 @@ public class UserServiceImpl implements UserService {
     try {
 
       query = "SELECT login FROM Customers;";
-//      statement = ConnectionFactory.getInstance().getConnection().prepareStatement(query);
-//      ResultSet resultSet = statement.executeQuery();
-
       statement = ConnectionFactory.getInstance().getConnection().createStatement();
-
       ResultSet resultSet = statement.executeQuery(query);
 
       while(resultSet.next()) {
@@ -48,14 +44,8 @@ public class UserServiceImpl implements UserService {
 
     try {
       String query = "SELECT login, password FROM Customers;";
-
-      PreparedStatement statement = ConnectionFactory.getInstance().getConnection().prepareStatement(query);
-
-      ResultSet resultSet = statement.executeQuery();
-
-//      Statement statement = ConnectionFactory.getInstance().getConnection().createStatement();
-//
-//      ResultSet resultSet = statement.executeQuery(query);
+      Statement statement = ConnectionFactory.getInstance().getConnection().createStatement();
+      ResultSet resultSet = statement.executeQuery(query);
 
       while(resultSet.next()) {
         if (isRegistered(login) & password.equals(resultSet.getString("password"))) {
