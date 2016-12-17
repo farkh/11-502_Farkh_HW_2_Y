@@ -8,7 +8,7 @@ CREATE TABLE Auto (
 	mileage int NOT NULL,
 	horsepower int NOT NULL,
 	gearbox varchar NOT NULL,
-	year DATE NOT NULL,
+	year int NOT NULL,
 	CONSTRAINT Auto_pk PRIMARY KEY (auto_id)
 );
 
@@ -35,7 +35,7 @@ CREATE TABLE Requirements (
 	mileage int NOT NULL,
 	horsepower int NOT NULL,
 	gearbox varchar(10) NOT NULL,
-	year varchar NOT NULL
+	year int NOT NULL
 );
 
 CREATE TABLE Orders (

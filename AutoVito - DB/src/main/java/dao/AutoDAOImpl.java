@@ -2,7 +2,6 @@ package dao;
 
 import factories.ConnectionFactory;
 import models.Auto;
-import models.Requirement;
 
 import java.sql.PreparedStatement;
 import java.sql.Statement;
@@ -64,10 +63,6 @@ public class AutoDAOImpl implements AutoDAO {
     } catch (SQLException e) {
       e.printStackTrace();
     }
-  }
-
-  public void saveRequirements(Requirement requirements) {
-
   }
 
   public List<Auto> findAll() {
