@@ -1,6 +1,7 @@
 package ru.itis.inform.factories;
 
 import ru.itis.inform.dao.AutoDAO;
+import ru.itis.inform.dao.TokenDAO;
 import ru.itis.inform.dao.UserDAO;
 import ru.itis.inform.models.Auto;
 import ru.itis.inform.models.User;
@@ -21,8 +22,10 @@ public class DAOFactory {
 
   private UserDAO userDAO;
   private AutoDAO autoDAO;
+  private TokenDAO tokenDAO;
   private String userDAOClass;
   private String autoDAOClass;
+  private String tokenDAOClass;
 
   private DAOFactory() {
 
@@ -32,12 +35,23 @@ public class DAOFactory {
 
       Class userClass = Class.forName(properties.getProperty("userDAO.class"));
       Class autoClass = Class.forName(properties.getProperty("autoDAO.class"));
+      Class tokenClass = Class.forName(properties.getProperty("tokenDAO.class"));
 
-      Constructor userClassConstructor = userClass.getConstructor(Connection.class);
-      Constructor autoClassConstructor = autoClass.getConstructor(Connection.class);
+      String userString = properties.getProperty("userDAO.class");
+      String autoString = properties.getProperty("autoDAO.class");
+      String tokenString = properties.getProperty("tokenDAO.class");
 
-      this.userDAO = (UserDAO) userClassConstructor.newInstance(ConnectionFactory.getInstance().getConnection());
-      this.autoDAO = (AutoDAO) autoClassConstructor.newInstance(ConnectionFactory.getInstance().getConnection());
+//      Constructor userClassConstructor = userClass.getConstructor(Connection.class);
+//      Constructor autoClassConstructor = autoClass.getConstructor(Connection.class);
+//      Constructor tokenClassConstructor = tokenClass.getConstructor(Connection.class);
+//
+//      this.userDAO = (UserDAO) userClassConstructor.newInstance(ConnectionFactory.getInstance().getConnection());
+//      this.autoDAO = (AutoDAO) autoClassConstructor.newInstance(ConnectionFactory.getInstance().getConnection());
+//      this.tokenDAO = (TokenDAO) tokenClassConstructor.newInstance(ConnectionFactory.getInstance().getConnection());
+
+      this.userDAO = (UserDAO) Class.forName(userString).newInstance();
+      this.autoDAO = (AutoDAO) Class.forName(autoString).newInstance();
+      this.tokenDAO = (TokenDAO) Class.forName(tokenString).newInstance();
 
     } catch (FileNotFoundException e) {
       e.printStackTrace();
@@ -45,16 +59,16 @@ public class DAOFactory {
       e.printStackTrace();
     } catch (ClassNotFoundException e) {
       e.printStackTrace();
-    } catch (NoSuchMethodException e) {
-      e.printStackTrace();
+//    } catch (NoSuchMethodException e) {
+//      e.printStackTrace();
     } catch (IllegalAccessException e) {
       e.printStackTrace();
     } catch (InstantiationException e) {
       e.printStackTrace();
-    } catch (SQLException e) {
-      e.printStackTrace();
-    } catch (InvocationTargetException e) {
-      e.printStackTrace();
+//    } catch (SQLException e) {
+//      e.printStackTrace();
+//    } catch (InvocationTargetException e) {
+//      e.printStackTrace();
     }
   }
 
@@ -72,5 +86,9 @@ public class DAOFactory {
 
   public AutoDAO getAutoDAO() {
     return autoDAO;
+  }
+
+  public TokenDAO getTokenDAO() {
+    return tokenDAO;
   }
 }

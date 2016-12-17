@@ -17,7 +17,7 @@ public class TokenDAOImpl implements TokenDAO {
 
       if (ConnectionFactory.getInstance().getConnection() != null && id != "" && token != "") {
 
-        query = "INSERT INTO Cookies (id, token) VALUES ( ? , ? );";
+        query = "INSERT INTO cookies (id, token) VALUES ( ? , ? );";
 
         sqlUpdate(id, token, query);
       }

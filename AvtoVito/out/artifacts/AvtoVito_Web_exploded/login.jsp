@@ -54,7 +54,7 @@
   </nav>
 </div>
 
-<div class="continer-fluid join-form">
+<div class="container-fluid join-form">
   <div class="col-lg-4 col-lg-offset-4">
     <h2>Войти</h2>
     <hr>

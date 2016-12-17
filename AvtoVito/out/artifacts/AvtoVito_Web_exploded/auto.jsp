@@ -1,4 +1,5 @@
-<%--
+<%@ page import="ru.itis.inform.models.Auto" %>
+<%@ page import="java.util.List" %><%--
   Created by IntelliJ IDEA.
   User: farkh
   Date: 13/10/2016
@@ -57,23 +58,46 @@
 <div class="container-fluid results">
   <div class="row">
     <div class="col-lg-10 col-lg-offset-1">
-      <h2>Автомобили</h2><hr><br>
+      <div class="row">
+        <div class="col-lg-5">
+          <h2>Автомобили</h2>
+        </div>
+        <div class="col-lg-offset-5 col-lg-2">
+          <a href="/add" class="btn btn-primary btn-block">Добавить авто</a>
+        </div>
+      </div>
+
+      <hr><br>
+
       <!-- R O W -->
       <div class="row">
+
+        <%
+          if (request.getAttribute("autos") != null) {
+            List<Auto> list = (List<Auto>) request.getAttribute("autos");
+
+            for (int i = 0; i < list.size(); i++) {
+        %>
         <!-- Auto rendering -->
         <div class="col-lg-4 col-sm-6 col-md-4">
           <div class="thumbnail">
-            <img src="img/bmw.jpg" alt="Auto Photo">
+            <div class="auto__image">
+              <img src="<%= list.get(i).getPhotoLink() %>" alt="Auto Photo">
+            </div>
             <div class="caption">
-              <h3>Chevrolet Camaro 2015</h3>
+              <h3><%= list.get(i).getBrand() %></h3>
               <br>
               <p><a href="#" class="btn btn-primary btn-block" role="button">Подробнее</a></p>
             </div>
           </div>
         </div>
-        <!-- End of row -->
-        <br>
+
+        <%
+          }}
+        %>
       </div>
+      <!-- End of row -->
+      <br>
     </div>
   </div>
 </div>

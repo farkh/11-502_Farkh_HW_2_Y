@@ -4,6 +4,7 @@ import ru.itis.inform.models.User;
 import ru.itis.inform.services.TokenService;
 import ru.itis.inform.services.TokenServiceImpl;
 import ru.itis.inform.services.UserServiceImpl;
+import ru.itis.inform.utils.Hash;
 import ru.itis.inform.utils.Token;
 
 import javax.servlet.RequestDispatcher;
@@ -33,8 +34,10 @@ public class SignInServlet extends HttpServlet {
   protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
     resp.setContentType("text/html; charset=UTF-8");
 
+    Hash hash = new Hash();
+
     String login = req.getParameter("login-signin-field");
-    String password = req.getParameter("password-signin-field");
+    String password = hash.generateHash(req.getParameter("password-signin-field"));
     String cookieCheck = req.getParameter("checkbox-cookies");
     UserServiceImpl userService = new UserServiceImpl();
 
@@ -49,7 +52,7 @@ public class SignInServlet extends HttpServlet {
 
         if (cookieCheck != null) {
           String token = Token.getToken();
-          Cookie cookie = new Cookie("current_user", token);
+          Cookie cookie = new Cookie("autoVitoCookie", token);
           cookie.setMaxAge(7 * 24 * 60 * 60);
           resp.addCookie(cookie);
           tokenService = new TokenServiceImpl();

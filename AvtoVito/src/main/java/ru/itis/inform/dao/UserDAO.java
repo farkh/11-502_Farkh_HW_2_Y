@@ -9,4 +9,6 @@ public interface UserDAO {
   User find(String login);
   void save(User user) throws SQLException;
   List<User> findAll();
+  String isExists(String token);
+  String findByID(String id);
 }

@@ -53,4 +53,14 @@
         <servlet-name>UserExists</servlet-name>
         <url-pattern>/exists</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>Add</servlet-name>
+        <servlet-class>ru.itis.inform.servlets.AddServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>Add</servlet-name>
+        <url-pattern>/add</url-pattern>
+    </servlet-mapping>
 </web-app>

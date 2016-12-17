@@ -35,15 +35,6 @@ public class ConnectionFactory {
     } catch (Exception e) {
       System.out.println("Error, couldn't install Connection :(((((");
     }
-//    finally {
-//      if (connection != null) {
-//        try {
-//          connection.close();
-//        } catch (SQLException e) {
-//          System.out.println("SQL error.");
-//        }
-//      }
-//    }
   }
 
   static {

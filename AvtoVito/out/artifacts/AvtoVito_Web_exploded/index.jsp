@@ -16,6 +16,9 @@
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
+    <!-- main.css -->
+    <link rel="stylesheet" href="css/main.css">
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -23,8 +26,6 @@
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
-    <!-- main.css -->
-    <link rel="stylesheet" href="css/main.css">
     <link rel="icon" type="image/png" href="img/favicon.png">
 </head>
 <body>
