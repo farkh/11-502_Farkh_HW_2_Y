@@ -20,7 +20,7 @@ public class ConnectionFactory {
 
     try {
       this.properties = new Properties();
-      properties.load(new FileInputStream("/Users/farkh/Programming/11-502_Farkh_HW_2_Y/AvtoVito/src/main/resources/drivers.properties"));
+      properties.load(new FileInputStream("/Users/farkh/Programming/11-502_Farkh_HW_2_Y/AutoVito - DB/src/main/resources/drivers.properties"));
 
       this.driverClass = properties.getProperty("driver.class");
       this.urlDB = properties.getProperty("urlDB.string");

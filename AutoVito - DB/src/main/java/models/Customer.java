@@ -1,9 +1,6 @@
 package models;
 
 public class Customer {
-  private int id;
-  private String login;
-  private String password;
   private String name;
   private String surname;
   private String city;
@@ -11,10 +8,7 @@ public class Customer {
   private String house;
   private String phone;
 
-  public Customer(int id, String login, String password, String name, String surname, String city, String street, String house, String phone) {
-    this.id = id;
-    this.login = login;
-    this.password = password;
+  public Customer(String name, String surname, String city, String street, String house, String phone) {
     this.name = name;
     this.surname = surname;
     this.city = city;
@@ -22,14 +16,6 @@ public class Customer {
     this.house = house;
     this.phone = phone;
   }
-
-  public int getId() {
-    return id;
-  }
-
-  public String getLogin() { return login; }
-
-  public String getPassword() { return password; }
 
   public String getName() {
     return name;

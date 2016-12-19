@@ -11,8 +11,9 @@ public class Auto {
   private int horsepower;
   private String gearbox;
   private int year;
+  private String imageLink;
 
-  public Auto(int id, String brand, String type, int price, String color, String wheel, int mileage, int horsepower, String gearbox, int year) {
+  public Auto(int id, String brand, String type, int price, String color, String wheel, int mileage, int horsepower, String gearbox, int year, String imageLink) {
     this.id = id;
     this.brand = brand;
     this.type = type;
@@ -23,6 +24,11 @@ public class Auto {
     this.horsepower = horsepower;
     this.gearbox = gearbox;
     this.year = year;
+    this.imageLink = imageLink;
+  }
+
+  public String getImageLink() {
+    return imageLink;
   }
 
   public int getId() {

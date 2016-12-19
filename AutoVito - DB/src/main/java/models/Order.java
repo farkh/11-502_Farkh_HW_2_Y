@@ -1,31 +1,25 @@
 package models;
 
 public class Order {
-  private int id;
   private int autoId;
-  private int customerId;
-  private int supplierId;
+  private String login;
+  private String  supplierName;
 
-  public Order(int id, int autoId, int customerId, int supplierId) {
-    this.id = id;
+  public Order(int autoId, String login, String supplierName) {
     this.autoId = autoId;
-    this.customerId = customerId;
-    this.supplierId = supplierId;
-  }
-
-  public int getId() {
-    return id;
+    this.login = login;
+    this.supplierName = supplierName;
   }
 
   public int getAutoId() {
     return autoId;
   }
 
-  public int getCustomerId() {
-    return customerId;
+  public String getLogin() {
+    return login;
   }
 
-  public int getSupplierId() {
-    return supplierId;
+  public String getSupplierName() {
+    return supplierName;
   }
 }
