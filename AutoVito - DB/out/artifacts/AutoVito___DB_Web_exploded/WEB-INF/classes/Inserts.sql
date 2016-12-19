@@ -19,3 +19,7 @@ INSERT INTO gearboxes VALUES ('Manual');
 CREATE VIEW AllAutos
 AS SELECT *
 FROM auto;
+
+-- INDEX
+CREATE INDEX index_auto_on_id
+ON auto (auto_id);

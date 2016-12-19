@@ -8,7 +8,7 @@ import java.sql.SQLException;
 
 public class OrderDAOImpl implements OrderDAO {
   public void save(Order order) throws SQLException {
-    String query = "SELECT order_ins(?, ?, ?)";
+    String query = "SELECT order_ins(?, ?, ?);";
 
     PreparedStatement statement = ConnectionFactory.getInstance().getConnection().prepareStatement(query);
 

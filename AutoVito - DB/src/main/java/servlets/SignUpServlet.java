@@ -57,6 +57,7 @@ public class SignUpServlet extends HttpServlet {
     if (user.getLogin() != null & user.getPassword() != null) {
       try {
         userDAO.save(user);
+//        System.out.println("USER ID: " + userDAO.getUserId(user.getLogin()));
         customerDAO.save(customer);
       } catch (SQLException e) {
         e.printStackTrace();

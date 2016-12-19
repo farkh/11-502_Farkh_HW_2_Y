@@ -2,6 +2,7 @@ package servlets;
 
 import models.User;
 import services.UserServiceImpl;
+import utils.Hash;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -30,9 +31,10 @@ public class LogInServlet extends HttpServlet {
   protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
     resp.setContentType("text/html; charset=UTF-8");
 
+    Hash hash = new Hash();
 
     String login = req.getParameter("login");
-    String password = req.getParameter("password");
+    String password = hash.generateHash(req.getParameter("password"));
 
     UserServiceImpl userService = new UserServiceImpl();
 
@@ -42,7 +44,6 @@ public class LogInServlet extends HttpServlet {
       if (password.equals(currentUser.getPassword())) {
         HttpSession session = req.getSession();
 
-        // S E S S I O N
         session.setAttribute("current_user", currentUser);
         resp.sendRedirect("/autos");
       } else {

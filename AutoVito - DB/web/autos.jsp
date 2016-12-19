@@ -60,7 +60,10 @@
                     <form method="POST" action="/autos">
                       <input type="text" name="id" value="<%= auto.getId()%>" style="display: none;">
                       <button type="submit" href="/auto" class="ui button right floated">Info</button>
-                      <button type="submit" href="/order" class="ui primary button">Order</button>
+                    </form>
+                    <form action="/autos" method="POST">
+                      <input type="text" name="id" value="<%= auto.getId()%>" style="display: none;">
+                      <button type="submit" href="autos" class="ui red button delete">Delete</button>
                     </form>
                   </div>
                 </div>
